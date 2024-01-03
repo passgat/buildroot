@@ -1,0 +1,59 @@
+From 1cc186fd74e51455b40679c9e08921ef49f4a8d3 Mon Sep 17 00:00:00 2001
+From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Date: Thu, 20 Apr 2023 16:31:07 +0200
+Subject: [PATCH] ARM: dts: support CAN on stm32f769-disco board
+
+Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Upstream: N/A, not upstreamable
+---
+ arch/arm/boot/dts/st/stm32f769-disco.dts | 22 ++++++++++++++++++++--
+ 1 file changed, 20 insertions(+), 2 deletions(-)
+
+diff --git a/arch/arm/boot/dts/st/stm32f769-disco.dts b/arch/arm/boot/dts/st/stm32f769-disco.dts
+index b038d0ed39e8..a1e0157725ba 100644
+--- a/arch/arm/boot/dts/st/stm32f769-disco.dts
++++ b/arch/arm/boot/dts/st/stm32f769-disco.dts
+@@ -100,6 +100,24 @@ mmc_vcard: mmc_vcard {
+ 	};
+ };
+ 
++&can1 {
++	pinctrl-0 = <&can1_pins_a>;
++	pinctrl-names = "default";
++	status = "okay";
++};
++
++&can2 {
++	pinctrl-0 = <&can2_pins_b>;
++	pinctrl-names = "default";
++	status = "okay";
++};
++
++&can3 {
++	pinctrl-0 = <&can3_pins_a>;
++	pinctrl-names = "default";
++	status = "okay";
++};
++
+ &rcc {
+ 	compatible = "st,stm32f769-rcc", "st,stm32f746-rcc", "st,stm32-rcc";
+ };
+@@ -107,7 +125,7 @@ &rcc {
+ &cec {
+ 	pinctrl-0 = <&cec_pins_a>;
+ 	pinctrl-names = "default";
+-	status = "okay";
++	status = "disabled";
+ };
+ 
+ &clk_hse {
+@@ -161,5 +179,5 @@ &usbotg_hs {
+ 	phy-names = "usb2-phy";
+ 	pinctrl-0 = <&usbotg_hs_pins_a>;
+ 	pinctrl-names = "default";
+-	status = "okay";
++	status = "disabled";
+ };
+-- 
+2.43.0
+
