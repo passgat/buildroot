@@ -1,0 +1,46 @@
+From 3ea2094d7f865adcfc57e1081a3c3aa344e390c1 Mon Sep 17 00:00:00 2001
+From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Date: Wed, 3 Jan 2024 11:50:08 +0100
+Subject: [PATCH] ARM: dts: support CAN on stm32f469-disco board
+
+Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Upstream: N/A, not upstreamable
+---
+ arch/arm/boot/dts/st/stm32f469-disco.dts | 14 +++++++++++++-
+ 1 file changed, 13 insertions(+), 1 deletion(-)
+
+diff --git a/arch/arm/boot/dts/st/stm32f469-disco.dts b/arch/arm/boot/dts/st/stm32f469-disco.dts
+index cbbd521bf010..0ff68f3091b8 100644
+--- a/arch/arm/boot/dts/st/stm32f469-disco.dts
++++ b/arch/arm/boot/dts/st/stm32f469-disco.dts
+@@ -124,6 +124,18 @@ vcc5v_otg: vcc5v-otg-regulator {
+ 	};
+ };
+ 
++&can1 {
++	pinctrl-0 = <&can1_pins_a>;
++	pinctrl-names = "default";
++	status = "okay";
++};
++
++&can2 {
++	pinctrl-0 = <&can2_pins_b>;
++	pinctrl-names = "default";
++	status = "okay";
++};
++
+ &rcc {
+ 	compatible = "st,stm32f469-rcc", "st,stm32f42xx-rcc", "st,stm32-rcc";
+ };
+@@ -176,7 +188,7 @@ dsi_panel_in: endpoint {
+ };
+ 
+ &ltdc {
+-	status = "okay";
++	status = "disabled";
+ 
+ 	port {
+ 		ltdc_out_dsi: endpoint {
+-- 
+2.43.0
+
